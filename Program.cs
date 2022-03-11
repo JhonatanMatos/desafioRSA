@@ -1,27 +1,61 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Diagnostics;
 using System.Numerics;
 
 try
-{    
-    #region Etapa 1 - Escolher p e q (números primos) para o cálculo de N = p.q
+{
+    //teste
+    #region Cronometro
+
+    Stopwatch stopWatch = new Stopwatch();
+    stopWatch.Start();
+
+    #endregion
+
+    #region Define Mensagem a ser Criptografada
+
     string msg = "The information security is of significant importance to ensure the privacy of communications";
+    //Console.WriteLine("Digite a mensagem que deseja criptogravar:");
+    //msg = Console.ReadLine();
+    Console.WriteLine();
     Console.WriteLine("Mensagem = " + msg);
     Console.WriteLine();
     string msgCrip = "";
     string msgDecrip = "";
-    int p = 17, q = 41;
-    int n = p * q;
-    int e = 2;
+
+    #endregion
+
+    #region Etapa 1 - Escolher p e q (números primos) para o cálculo de N = p.q
+    Random r = new Random();
+    Random s = new Random();
+    int p = r.Next(1, 100);
+    int q = s.Next(1, 100);
+
+    //aqui testa se não é primo, e executa enquanto não for primo
+    while (!ePrimo(p))
+    {
+        p = r.Next(1, 100);
+    }
+    while (!ePrimo(q))
+    {
+        q = s.Next(1, 100);
+    }
+    //p = 17; q = 41;//00:00:00.0496571
+    p = 6569; q = 13033; //00:00:02.2572468
+
     #endregion
 
     #region Etapa 2 - Calcular a função totiente tot(N) = (p-1).(q-1) 
 
+    int n = p * q;
     int totN = (p - 1) * (q - 1);
+
     #endregion
 
     #region Etapa 3 - Escolha 1 < e < tot(N), tal que e e tot(N)sejam primos entre si
 
+    int e = 1;
     bool verdadeiro = false;
     while (!verdadeiro)
     {
@@ -39,7 +73,7 @@ try
     #endregion
 
     #region Etapa 4 - Escolha d tal que e.d mod (N) =1
-    
+
     verdadeiro = false;
     int d = 1;
     while (!verdadeiro)
@@ -54,6 +88,18 @@ try
             d++;
         }
     }
+    #endregion
+
+
+    #region Exibe Valor das Variaveis 
+
+    Console.WriteLine("p: {0}", p);
+    Console.WriteLine("q: {0}", q);
+    Console.WriteLine("n: {0}", n);
+    Console.WriteLine("e: {0}", e);
+    Console.WriteLine("d: {0}", d);
+    Console.WriteLine();
+
     #endregion
 
     #region Chaves Assimetricas
@@ -80,7 +126,11 @@ try
     }
     Console.WriteLine("Mensagem Decriptografada = " + msgDecrip);
     Console.WriteLine();
+    stopWatch.Stop();
+    Console.WriteLine("Tempo Decorrido: {0}", stopWatch.Elapsed);
     Console.ReadLine();
+
+
     #endregion
 
     #endregion
@@ -90,7 +140,9 @@ catch (Exception e)
     Console.WriteLine("{ 0} Exception caught.", e);
 }
 
-#region Metodo Máximo divisor comum
+#region Metodos
+
+#region Máximo divisor comum
 
 int MDC(int a, int b)
 {
@@ -103,4 +155,23 @@ int MDC(int a, int b)
     }
     return a;
 }
+#endregion
+
+#region Valida Numero Primo
+bool ePrimo(int num)
+{
+    int div = 0;
+
+    for (int i = 1; i <= num; i++)
+    {
+        if (num % i == 0)
+        {
+            div++;
+        }
+    }
+
+    return div == 2; //true se div for 2, falso caso contrário
+}
+#endregion
+
 #endregion
