@@ -1,6 +1,6 @@
 # **Desafio RSA**
 > RSA (Rivest-Shamir-Adleman) é um dos primeiros sistemas de criptografia de chave pública e é amplamente utilizado para transmissão segura de dados.
-- [YouTube](https://youtu.be/wYmB0HwiIy4)
+- [YouTube](https://www.youtube.com/watch?v=JuQLqnKUR2U)
 
 ---
 
