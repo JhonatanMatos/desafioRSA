@@ -35,13 +35,13 @@ try
     //aqui testa se não é primo, e executa enquanto não for primo
     while (!ePrimo(p))
     {
-        p = r.Next();
-        //p = r.Next(10,1000);
+        //p = r.Next();
+        p = r.Next(10,1000);
     }
     while (!ePrimo(q))
     {
-        q = s.Next();
-        //q = s.Next(10,1000);
+        //q = s.Next();
+        q = s.Next(10,1000);
     }
     //p = 17; q = 41;   //Tempo Decorrido: 00:00:00.0496571
     //p = 139; q = 499; //Tempo Decorrido: 00:00:01.9907681
