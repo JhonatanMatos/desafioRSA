@@ -29,20 +29,28 @@ try
     #region Etapa 1 - Escolher p e q (números primos) para o cálculo de N = p.q
     Random r = new Random();
     Random s = new Random();
-    int p = r.Next(1, 100);
-    int q = s.Next(1, 100);
+    int p = r.Next(10, 1000);
+    int q = s.Next(10, 1000);
 
     //aqui testa se não é primo, e executa enquanto não for primo
     while (!ePrimo(p))
     {
-        p = r.Next(1, 100);
+        p = r.Next();
+        //p = r.Next(10,1000);
     }
     while (!ePrimo(q))
     {
-        q = s.Next(1, 100);
+        q = s.Next();
+        //q = s.Next(10,1000);
     }
-    //p = 17; q = 41;//00:00:00.0496571
-    //p = 6569; q = 13033;
+    //p = 17; q = 41;   //Tempo Decorrido: 00:00:00.0496571
+    //p = 139; q = 499; //Tempo Decorrido: 00:00:01.9907681
+    //p = 383; q = 283; //Tempo Decorrido: 00:00:19.7742698
+    //p = 809; q = 233; //Tempo Decorrido: 00:00:44.4477085
+    //p = 631; q = 223; //Tempo Decorrido: 00:00:54.7364763
+    //p = 907; q = 683; //Tempo Decorrido: 00:03:19.1072381
+    //p = 326253247; q = 503; //Tempo Decorrido: + de 54 minutos
+
 
     #endregion
 
@@ -55,7 +63,7 @@ try
 
     #region Etapa 3 - Escolha 1 < e < tot(N), tal que e e tot(N)sejam primos entre si
 
-    int e = 1;
+    int e = 2;
     bool verdadeiro = false;
     while (!verdadeiro)
     {
@@ -105,6 +113,8 @@ try
     #region Chaves Assimetricas
 
     #region Criptografar - Chave Pública (e,N) => C = P^e mod N    
+    Console.WriteLine("Criptografando Mensagem ...");
+
     int valorLetra = 0;
     BigInteger novaLetra = 0;
     foreach (char letra in msg)
@@ -118,11 +128,12 @@ try
     #endregion
 
     #region Decriptografar - Chave Privada (d,N) => P = C^d mod N
+    Console.WriteLine("Decriptografando Mensagem ...");
     BigInteger voltaLetra;
     foreach (string valor in msgCrip.Remove(msgCrip.Length - 1).Split(" "))
     {
         voltaLetra = BigInteger.Pow((Convert.ToInt32(valor)), (d)) % n;
-        msgDecrip += ((char)voltaLetra);
+        msgDecrip += ((char)voltaLetra);        
     }
     Console.WriteLine("Mensagem Decriptografada = " + msgDecrip);
     Console.WriteLine();
