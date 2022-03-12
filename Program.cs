@@ -3,9 +3,9 @@
 using System.Diagnostics;
 using System.Numerics;
 
+#region RSA – Criptografia Assimétrica
 try
-{
-    //teste
+{    
     #region Cronometro
 
     Stopwatch stopWatch = new Stopwatch();
@@ -150,7 +150,7 @@ catch (Exception e)
 {
     Console.WriteLine("{ 0} Exception caught.", e);
 }
-
+#endregion
 #region Metodos
 
 #region Máximo divisor comum
